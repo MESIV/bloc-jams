@@ -55,13 +55,15 @@
      return template;
  };
 
-var setCurrentAlbum = function(album) {
     
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+
+var setCurrentAlbum = function(album) {
  
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
@@ -74,17 +76,18 @@ var setCurrentAlbum = function(album) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
  };
+
   
 window.onload = function() {
      setCurrentAlbum(albumPicasso);
   
-var albums = [albumPicasso, albumMarconi, albumLincoln];
+var realAlbums = [albumPicasso, albumMarconi, albumLincoln];
 var index = 1;
 albumImage.addEventListener("click", function(event) {
-    setCurrentAlbum(albums[index]); 
+    setCurrentAlbum(realAlbums[index]); 
     i++
-    if (index == albums.length) {
-        index = 0
+    if (i == realAlbums.length) {
+        i = 0
     }
 });
 };
