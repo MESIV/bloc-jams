@@ -41,7 +41,7 @@ var albumMarconi = {
  };
 
 var setCurrentAlbum = function(album) {
-     // #1
+    
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
