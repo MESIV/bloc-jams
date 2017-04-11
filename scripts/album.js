@@ -1,4 +1,4 @@
- var albumPicasso = {
+var albumPicasso = {
      title: 'The Colors',
      artist: 'Pablo Picasso',
      label: 'Cubism',
@@ -12,8 +12,8 @@
          { title: 'Magenta', duration: '2:15'}
      ]
  };
- 
- var albumMarconi = {
+
+var albumMarconi = {
      title: 'The Telephone',
      artist: 'Guglielmo Marconi',
      label: 'EM',
@@ -48,16 +48,13 @@ var setCurrentAlbum = function(album) {
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
  
-     // #2
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
      albumImage.setAttribute('src', album.albumArtUrl);
  
-     // #3
      albumSongList.innerHTML = '';
  
-     // #4
      for (var i = 0; i < album.songs.length; i++) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
