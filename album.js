@@ -1,51 +1,57 @@
- var albumPicasso = {
-     title: 'The Colors',
-     artist: 'Pablo Picasso',
-     label: 'Cubism',
-     year: '1881',
-     albumArtUrl: 'assets/images/album_covers/01.png',
-     songs: [
-         { title: 'Blue', duration: '4:26' },
-         { title: 'Green', duration: '3:14' },
-         { title: 'Red', duration: '5:01' },
-         { title: 'Pink', duration: '3:21'},
-         { title: 'Magenta', duration: '2:15'}
-     ]
- };
- 
- var albumMarconi = {
-     title: 'The Telephone',
-     artist: 'Guglielmo Marconi',
-     label: 'EM',
-     year: '1909',
-     albumArtUrl: 'assets/images/album_covers/20.png',
-     songs: [
-         { title: 'Hello, Operator?', duration: '1:01' },
-         { title: 'Ring, ring, ring', duration: '5:01' },
-         { title: 'Fits in your pocket', duration: '3:21'},
-         { title: 'Can you hear me now?', duration: '3:14' },
-         { title: 'Wrong phone number', duration: '2:15'}
-     ]
- };
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.gElementsByClassName('album-view-song-list')[0];
+
+var albumPicasso = {
+    title: 'The Colors',
+    artist: 'Pablo Picasso',
+    label: 'Cubism',
+    year: '1881',
+    albumArtUrl: 'assets/images/album_covers/01.png',
+    songs: [
+        { title: 'Blue', duration: '4:26' },
+        { title: 'Green', duration: '3:14' },
+        { title: 'Red', duration: '5:01' },
+        { title: 'Pink', duration: '3:21'},
+        { title: 'Magenta', duration: '2:15'}
+  ]
+};
+
+var albumMarconi = {
+    title: 'The Telephone',
+    artist: 'Guglielmo Marconi',
+    label: 'EM',
+    year: '1909',
+    albumArtUrl: 'assets/images/album_covers/20.png',
+    songs: [
+        { title: 'Hello, Operator?', duration: '1:01' },
+        { title: 'Ring, ring, ring', duration: '5:01' },
+        { title: 'Fits in your pocket', duration: '3:21'},
+        { title: 'Can you hear me now?', duration: '3:14' },
+        { title: 'Wrong phone number', duration: '2:15'}
+  ]
+};
 
  var albumLincoln = {
-     title: 'Emancipation Proclamation',
-     artist: 'Abraham Lincoln',
-     label: 'U.S.A',
-     year: '1863',
-     albumArtUrl: 'assets/images/album_covers/abe.lincoln.jpg',
-     songs: [
-         { title: 'A night at the opera', duration: '5:03' },
-         { title: 'Civil War (Marvel Diss)', duration: '3:59' },
-         { title: 'B.O.O.T.H', duration: '2:31'},
-         { title: 'Gettysburg Address', duration: '1:14' },
-         { title: 'Vampire Hunter', duration: '2:07'}
-     ]
- };
+    title: 'Emancipation Proclamation',
+    artist: 'Abraham Lincoln',
+    label: 'U.S.A',
+    year: '1863',
+    albumArtUrl: 'assets/images/album_covers/abe.lincoln.jpg',
+    songs: [
+        { title: 'Presidential', duration: '5:03' },
+        { title: 'Civil War (Marvel Diss)', duration: '3:59' },
+        { title: 'B.O.O.T.H', duration: '2:31'},
+        { title: 'Gettysburg Address Remix', duration: '1:14' },
+        { title: 'Vampire Hunter', duration: '2:07'}
+  ]
+};
 
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
-        '<tr class="album-view-song-item">'
+      + '<tr class="album-view-song-item">'
       + '  <td class="song-item-number">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
       + '  <td class="song-item-duration">' + songLength + '</td>'
@@ -55,39 +61,31 @@
      return template;
  };
 
-    
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
-
-var setCurrentAlbum = function(album) {
- 
-     albumTitle.firstChild.nodeValue = album.title;
-     albumArtist.firstChild.nodeValue = album.artist;
-     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
-     albumImage.setAttribute('src', album.albumArtUrl);
- 
-     albumSongList.innerHTML = '';
- 
-     for (var i = 0; i < album.songs.length; i++) {
-         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-     }
- };
-
-  
 window.onload = function() {
-     setCurrentAlbum(albumPicasso);
   
-var realAlbums = [albumPicasso, albumMarconi, albumLincoln];
-var index = 1;
+  setCurrentAlbum(albumPicasso);
+    var allAlbums = [albumPicasso, albumMarconi, albumLincoln];
+    var currentIndex = 1;
+
 albumImage.addEventListener("click", function(event) {
-    setCurrentAlbum(realAlbums[index]); 
-    i++
-    if (i == realAlbums.length) {
-        i = 0
+    setCurrentAlbum(allAlbums[currentIndex]); 
+    currentIndex++;
+      if (currentIndex == allAlbums.length) {
+      currentIndex = 0
     }
 });
 };
+
+var setCurrentAlbum = function(album) {
+     
+    albumTitle.firstChild.nodeValue = album.title;
+    albumArtist.firstChild.nodeValue = album.artist;
+    albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
+    albumImage.setAttribute('src', album.albumArtUrl);
+    albumSongList.innerHTML = '';
+ 
+    for (var i = 0; i < album.songs.length; i++) {
+      albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+     }
+ };
