@@ -120,13 +120,30 @@ songRows[i].addEventListener('click', function(event) {
 
 var parentName = function(element, eClass) {
     if (element) {
-      var eParent = element.parentElement;
-        while (eParent.className != eClass && eParent.className != null) {
-          eParent = eParent.parentElement;
-        }
+      if (element.parentElement) { // see if parent exists
+       var eParent = element.parentElement; // accesses parent element regardless
+        while (eParent.className != eClass && eParent.className != null)  { //
+         	if (eParent.parentElement) {// check to see if the current parent has a parent, if not, none was found with that class
+          		// otherwise, get the next one...	
+          		eParent = eParent.parentElement; 
+         	}
+          	else { 
+              console.log("No parent found with that class name.");
+              return;
+            }
+        } // end while
         return eParent;
+      } // end of line 3's if logic
+      else { 
+       console.log("No parent found.");
+      }
     }
 };
+
+//Re-write the function so that it:
+//Checks to see if a parent exists. If it doesn't, then console.log a string that says "No parent found".
+//Shows a different string in console.log when it fails to find a parent with the given class name: 
+//"No parent found with that class name".
 
 var newSong = function(element) {
     switch (element.className) {
